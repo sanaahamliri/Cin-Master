@@ -5,15 +5,17 @@ export default function FilmsTable() {
   const [films, setFilms] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const token = localStorage.getItem('token')
   useEffect(() => {
     fetchFilms();
   }, []);
 
-  const fetchFilms = async (token) => {
+  const fetchFilms = async () => {
     try {
       const response = await axios.get(`http://localhost:4000/api/films`,
         {
-          headers: { Authorization: `Bearer ${token}` },
+        
+          headers: { Authorization: `Bearer ${token}`,   'content-Type' : 'application/json' },
         }
       );
       setFilms(response.data);
