@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Dashboard from './pages/admin/DashBoard'; 
 import Films from './pages/admin/MoviesManage';
-
+import Seances from './pages/admin/SeancesManage';
 import Rooms from './pages/admin/RoomsManage';
 
 
@@ -17,6 +17,8 @@ function App() {
             <Route path="/admin/dashboard" element={<Dashboard />} />
             <Route path="/admin/filmsTable" element={<Films />} />
             <Route path="/admin/roomsTable" element={<Rooms />} />
+            <Route path="/admin/seancesTable" element={<Seances />} />
+
 
 
           </Routes>
