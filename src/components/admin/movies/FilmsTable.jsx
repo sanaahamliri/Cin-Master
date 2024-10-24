@@ -5,20 +5,20 @@ import { Link } from "react-router-dom";
 export default function FilmsTable() {
   const [films, setFilms] = useState([]);
   const [loading, setLoading] = useState(true);
+  const token = localStorage.getItem('token');
 
-  const token = localStorage.getItem('token')
   useEffect(() => {
     fetchFilms();
   }, []);
 
   const fetchFilms = async () => {
     try {
-      const response = await axios.get(`http://localhost:4000/api/films`,
-        {
-        
-          headers: { Authorization: `Bearer ${token}`,   'content-Type' : 'application/json' },
-        }
-      );
+      const response = await axios.get(`http://localhost:4000/api/films`, {
+        headers: { 
+          Authorization: `Bearer ${token}`,   
+          'Content-Type': 'application/json' 
+        },
+      });
       setFilms(response.data);
     } catch (error) {
       console.error("Error fetching films:", error);
@@ -28,18 +28,19 @@ export default function FilmsTable() {
   };
 
   const handleDelete = async (id) => {
-    // if (window.confirm("Are you sure you want to delete this film?")) {
+    if (window.confirm("Are you sure you want to delete this film?")) {
       try {
-        await axios.delete(`http://localhost:4000/api/films/${id}`,
-          {
-          
-            headers: { Authorization: `Bearer ${token}`,   'content-Type' : 'application/json' },
-          });
+        await axios.delete(`http://localhost:4000/api/films/${id}`, {
+          headers: { 
+            Authorization: `Bearer ${token}`,   
+            'Content-Type': 'application/json' 
+          },
+        });
         setFilms(films.filter(film => film._id !== id));
       } catch (error) {
         console.error("Error deleting film:", error);
       }
-    // }
+    }
   };
 
   if (loading) {
@@ -49,9 +50,11 @@ export default function FilmsTable() {
   return (
     <>
       <div className="flex justify-end mb-4 mr-10">
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Add Film
-        </button>
+        <Link to="/admin/filmForm">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Add Film
+          </button>
+        </Link>
       </div>
 
       <div className="relative ml-64 overflow-x-auto shadow-md sm:rounded-lg">
@@ -89,14 +92,14 @@ export default function FilmsTable() {
                   ))}
                 </td>
                 <td className="px-6 py-4 flex space-x-4">
-                  <a
-                    href={`/admin/filmForm/${film._id}`}
+                  <Link
+                    to={`/admin/filmForm/${film._id}`}
                     className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                   >
                     Edit
-                  </a>
-                  <Link to="#"
-                    
+                  </Link>
+                  <Link
+                    to="#"
                     className="font-medium text-red-600 dark:text-red-500 hover:underline"
                     onClick={() => handleDelete(film._id)}
                   >
