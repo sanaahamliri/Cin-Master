@@ -5,6 +5,8 @@ import Dashboard from './pages/admin/DashBoard';
 import Films from './pages/admin/MoviesManage';
 import Seances from './pages/admin/SeancesManage';
 import Rooms from './pages/admin/RoomsManage';
+import Users from './pages/admin/UsersManage';
+
 
 
 function App() {
@@ -18,6 +20,7 @@ function App() {
             <Route path="/admin/filmsTable" element={<Films />} />
             <Route path="/admin/roomsTable" element={<Rooms />} />
             <Route path="/admin/seancesTable" element={<Seances />} />
+            <Route path="/admin/usersTable" element={<Users />} />
 
 
 
