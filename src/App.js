@@ -8,7 +8,9 @@ import Rooms from './pages/admin/RoomsManage';
 import Users from './pages/admin/UsersManage';
 import FilmsForm from './components/admin/movies/FilmsForm';
 import FilmsFormEdit from './components/admin/movies/EditFilmForm';
-import Home from './components/home/Home'
+import Home from './components/home/home'
+import Details from './components/home/Detail'
+
 import Login from "./components/Auth/login";
 import Register from "./components/Auth/register";
 
@@ -21,6 +23,8 @@ function App() {
         <div className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/film/:id" element={<Details />} />
+
             <Route path="/admin/dashboard" element={<Dashboard />} />
 
             <Route path="/admin/filmsTable" element={<Films />} />
