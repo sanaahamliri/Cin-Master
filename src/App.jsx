@@ -18,9 +18,7 @@ import Register from "./components/Auth/register";
 function App() {
   return (
     <Router>
-      <div className="flex">
-        
-        <div className="flex-grow">
+     
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/film/:id" element={<Details />} />
@@ -40,8 +38,7 @@ function App() {
 
 
           </Routes>
-        </div>
-      </div>
+       
     </Router>
   );
 }

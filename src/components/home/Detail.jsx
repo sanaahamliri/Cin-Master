@@ -3,18 +3,18 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 export default function FilmDetails() {
-  const { id } = useParams();
+  const  { id }  = useParams();
   const [film, setFilm] = useState(null);
   const [loading, setLoading] = useState(true);
   const token = localStorage.getItem('token');
+  console.log(id);
+  
+  
 
-  useEffect(() => {
-    fetchFilmDetails();
-  }, [id]);
 
   const fetchFilmDetails = async () => {
     try {
-        const response = await axios.get(`http://localhost:4000/api/films`, {
+        const response = await axios.get(`http://localhost:4000/api/films/${id}`, {
             headers: { 
               Authorization: `Bearer ${token}`,   
               'Content-Type': 'application/json' 
@@ -25,7 +25,9 @@ export default function FilmDetails() {
       console.error("Error fetching film details:", error);
     }
   };
-
+  useEffect(() => {
+    fetchFilmDetails();
+  }, [id]);
   if (loading) {
     return <div>Loading film details...</div>;
   }
@@ -33,6 +35,7 @@ export default function FilmDetails() {
   if (!film) {
     return <div>Film not found!</div>;
   }
+console.log('image' , film.coverImage);
 
   return (
     <div className="container mx-auto px-4 py-6">
