@@ -8,7 +8,7 @@ import Rooms from './pages/admin/RoomsManage';
 import Users from './pages/admin/UsersManage';
 import FilmsForm from './components/admin/movies/FilmsForm';
 import FilmsFormEdit from './components/admin/movies/EditFilmForm';
-import Home from './components/home/home'
+import Home from './pages/client/Home'
 import Details from './components/home/Detail'
 
 import Login from "./components/Auth/login";

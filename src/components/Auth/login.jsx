@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-// import "./auth.css"
+import { useNavigate } from "react-router-dom";
+import "./auth.css";
 import { login } from "../../services/authService";
 
 const Login = () => {
@@ -9,6 +10,7 @@ const Login = () => {
   });
 
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -17,11 +19,15 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      
       const response = await login(formData.email, formData.password);
-      console.log(response);
+
+      if (response && response.user && response.user.role === 'admin') {
+        navigate('/admin/dashboard');
+      } else {
+        navigate('/');
+      }
     } catch (error) {
-      setErrorMessage('Failed to login.');
+      setErrorMessage('Échec de la connexion.');
     }
   };
 

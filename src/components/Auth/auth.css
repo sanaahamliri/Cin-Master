@@ -5,6 +5,11 @@
   }
   
   body {
+    /* background-image: url("../../../public/assets/images/9.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position: center; */
+    background-size: cover;
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     display: flex;
