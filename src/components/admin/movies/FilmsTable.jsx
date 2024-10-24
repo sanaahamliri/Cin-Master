@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function FilmsTable() {
   const [films, setFilms] = useState([]);
@@ -27,14 +28,18 @@ export default function FilmsTable() {
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm("Are you sure you want to delete this film?")) {
+    // if (window.confirm("Are you sure you want to delete this film?")) {
       try {
-        await axios.delete(`/api/films/${id}`);
+        await axios.delete(`http://localhost:4000/api/films/${id}`,
+          {
+          
+            headers: { Authorization: `Bearer ${token}`,   'content-Type' : 'application/json' },
+          });
         setFilms(films.filter(film => film._id !== id));
       } catch (error) {
         console.error("Error deleting film:", error);
       }
-    }
+    // }
   };
 
   if (loading) {
@@ -90,13 +95,13 @@ export default function FilmsTable() {
                   >
                     Edit
                   </a>
-                  <a
-                    href="#"
+                  <Link to="#"
+                    
                     className="font-medium text-red-600 dark:text-red-500 hover:underline"
                     onClick={() => handleDelete(film._id)}
                   >
                     Delete
-                  </a>
+                  </Link>
                 </td>
               </tr>
             ))}
