@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import SideBar from '../../components/admin/sidebar/SideBar';
+import Statistic from '../../components/admin/Dahsboard/overView';
 
 export default function DashBoard() {
 
@@ -7,7 +8,7 @@ export default function DashBoard() {
         <div className='bg-dark min-h-screen flex'>
             <SideBar />
             <div>
-              Dashboard
+              <Statistic />
             </div>
         </div>
     );
