@@ -93,7 +93,7 @@ export default function FilmsTable() {
                 </td>
                 <td className="px-6 py-4 flex space-x-4">
                   <Link
-                    to={`/admin/filmForm/${film._id}`}
+                    to={`/admin/filmFormEdit/${film._id}`}
                     className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                   >
                     Edit
